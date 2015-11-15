@@ -17,13 +17,14 @@ describe Doi do
     i = i + 1
     next if i < 2
     # doi_string, id, title, date, year, citation_type_id = line
-    doi_string,id,title,pub_date,pub_year,type,publication,start_page_number,ending_page_number,volume,issue,city,publisher = line
+    doi_string,id,title,pub_date,pub_year,type,publication,start_page_number,ending_page_number,volume,issue,city,publisher, website_id = line
     next unless type ==  "ArticleCitation"
+    next unless website_id == "1"
 
-    it 'returns the right title for a number of dois' do
+    it "returns the right title for #{doi_string}" do
       doi = Doi.new(doi_string)
       expect(doi.title.downcase.strip).to eq title.downcase.strip
     end
-
+    sleep rand
   end
 end

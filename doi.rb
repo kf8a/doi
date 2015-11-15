@@ -19,6 +19,12 @@ class Doi
                           headers: {'Accept': 'application/vnd.citationstyles.csl+json'},
                           followlocation: true)
 
-    @citation = JSON.parse(response.response_body)
+    p response
+    begin
+      @citation = JSON.parse(response.response_body)
+    rescue JSON::ParserError
+      warn "JSON:ParserError @{citation}"
+      @citation = nil
+    end
   end
 end
