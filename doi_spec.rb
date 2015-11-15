@@ -1,4 +1,5 @@
 require 'rspec'
+require 'csv'
 require './doi.rb'
 
 describe Doi do
@@ -9,5 +10,20 @@ describe Doi do
     expect(doi.volume).to eq "169"
     expect(doi.issue).to eq "3946"
     expect(doi.page).to eq "635-641"
+  end
+
+  i = 0
+  CSV.foreach("./test.csv") do |line|
+    i = i + 1
+    next if i < 2
+    # doi_string, id, title, date, year, citation_type_id = line
+    doi_string,id,title,pub_date,pub_year,type,publication,start_page_number,ending_page_number,volume,issue,city,publisher = line
+    next unless type ==  "ArticleCitation"
+
+    it 'returns the right title for a number of dois' do
+      doi = Doi.new(doi_string)
+      expect(doi.title.downcase.strip).to eq title.downcase.strip
+    end
+
   end
 end
