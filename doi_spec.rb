@@ -12,6 +12,17 @@ describe Doi do
     expect(doi.page).to eq "635-641"
   end
 
+  it 'can use google scholar if it can not find it in the doi system' do
+    doi = Doi.new('10.4319/lo.2013.58.4.1271')
+    doi.get_with_google_scholar('10.4319/lo.2013.58.4.1271')
+    expect(doi.title).to eq "Quantifying the production of dissolved organic nitrogen in headwater streams using 15N tracer additions"
+  end
+
+  it 'can use google scholar if it can not find it in the doi system' do
+    doi = Doi.new('10.4319/lo.2013.58.4.1271')
+    expect(doi.title).to eq "Quantifying the production of dissolved organic nitrogen in headwater streams using 15N tracer additions"
+  end
+
   i = 0
   CSV.foreach("./test.csv") do |line|
     i = i + 1
