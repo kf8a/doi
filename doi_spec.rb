@@ -32,7 +32,7 @@ describe Doi do
     next unless type ==  "ArticleCitation"
     next unless website_id == "1"
 
-    it "returns the right title for #{doi_string}" do
+    it "returns the right title for id #{id} with doi #{doi_string}" do
       doi = Doi.new(doi_string)
       expect(doi.title.downcase.strip).to eq title.downcase.strip
     end
