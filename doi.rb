@@ -6,7 +6,9 @@ class Doi
   attr_reader :citation
 
   def initialize(doi_uri)
+    @citation = {}
     get(doi_uri)
+    # get_pdf(doi_uri)
   end
 
   def method_missing(method)
@@ -28,8 +30,19 @@ class Doi
         @citation = JSON.parse(response.response_body)
       rescue JSON::ParserError
         warn "JSON:ParserError @{citation}"
-        @citation = nil
+        @citation = {}
       end
+    end
+  end
+
+  def get_pdf(doi_uri)
+    response = Typhoeus.get("dx.doi.org/" + doi_uri, 
+                          headers: {'Accept': 'text/html'},
+                          followlocation: true)
+    if response.response_code == 200
+      data = Nokogiri::HTML(response.response_body)
+      result = data.css("a#pdfLink").first["href"]
+      @citation['pdf'] = result
     end
   end
 
@@ -37,7 +50,6 @@ class Doi
     response = Typhoeus.get("scholar.google.com/scholar?q="+ doi_uri, followlocation: true)
     data = Nokogiri::HTML(response.response_body)
     result = data.css "h3.gs_rt"
-    @citation = {}
     @citation['title'] = result.text
   end
 end

@@ -23,6 +23,13 @@ describe Doi do
     expect(doi.title).to eq "Quantifying the production of dissolved organic nitrogen in headwater streams using 15N tracer additions"
   end
 
+  it 'gets the pdf for 10.1016/j.ecolecon.2007.09.020' do
+    doi = Doi.new('10.1016/j.ecolecon.2007.09.020')
+    doi.get_pdf('10.1016/j.ecolecon.2007.09.020')
+   
+    expect(doi.pdf).to start_with "http://www.sciencedirect.com/science/article"
+  end
+
   i = 0
   CSV.foreach("./test.csv") do |line|
     i = i + 1
