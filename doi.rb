@@ -45,7 +45,7 @@ class Doi
       if response.effective_url.start_with? "http://www.sciencedirect.com/science/article"
         data = Nokogiri::HTML(response.response_body)
         result = data.css("a#pdfLink").first["href"]
-        # pdf = Typhoeus.get(result, followlocation: true, accept_encoding: "gzip")
+        pdf = Typhoeus.get(result, followlocation: true, accept_encoding: "gzip")
         @citation['pdf'] = result
       end
     end
