@@ -2,18 +2,20 @@ require 'typhoeus'
 require 'json'
 require 'nokogiri'
 
+class Author
+  attr :author
+
+  def method_missing(method)
+  end
+end
+
 class Doi
   attr_reader :citation
 
   def initialize(doi_uri)
     @citation = {}
     get(doi_uri)
-    # get_pdf(doi_uri)
-  end
-
-  def method_missing(method)
-    key = method.to_s.gsub(/_/,'-')
-    @citation.fetch(key)
+    get_pdf(doi_uri)
   end
 
   def get(doi_uri)
@@ -43,6 +45,7 @@ class Doi
       if response.effective_url.start_with? "http://www.sciencedirect.com/science/article"
         data = Nokogiri::HTML(response.response_body)
         result = data.css("a#pdfLink").first["href"]
+        # pdf = Typhoeus.get(result, followlocation: true, accept_encoding: "gzip")
         @citation['pdf'] = result
       end
     end
