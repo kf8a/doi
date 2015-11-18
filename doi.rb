@@ -40,9 +40,11 @@ class Doi
                           headers: {'Accept': 'text/html'},
                           followlocation: true)
     if response.response_code == 200
-      data = Nokogiri::HTML(response.response_body)
-      result = data.css("a#pdfLink").first["href"]
-      @citation['pdf'] = result
+      if response.effective_url.start_with? "http://www.sciencedirect.com/science/article"
+        data = Nokogiri::HTML(response.response_body)
+        result = data.css("a#pdfLink").first["href"]
+        @citation['pdf'] = result
+      end
     end
   end
 

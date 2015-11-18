@@ -26,7 +26,7 @@ describe Doi do
   it 'gets the pdf for 10.1016/j.ecolecon.2007.09.020' do
     doi = Doi.new('10.1016/j.ecolecon.2007.09.020')
     doi.get_pdf('10.1016/j.ecolecon.2007.09.020')
-   
+
     expect(doi.pdf).to start_with "http://www.sciencedirect.com/science/article"
   end
 
