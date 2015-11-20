@@ -2,14 +2,7 @@ require 'typhoeus'
 require 'json'
 require 'nokogiri'
 
-class Author
-  attr :author
-
-  def method_missing(method)
-  end
-end
-
-class Doi
+class Doijs
   attr_reader :citation
 
   def initialize(doi_uri)
