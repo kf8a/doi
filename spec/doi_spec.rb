@@ -1,6 +1,6 @@
 require 'rspec'
 require 'csv'
-require './doi.rb'
+require "./lib/doi.rb"
 
 describe Doi do
   it 'returns the right info' do

@@ -2,7 +2,7 @@ require 'typhoeus'
 require 'json'
 require 'nokogiri'
 
-class Doijs
+class Doi
   attr_reader :citation
 
   def initialize(doi_uri)
