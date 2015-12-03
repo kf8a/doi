@@ -11,18 +11,18 @@ Gem::Specification.new do |s|
   s.email    = "bohms@msu.edu"
   s.homepage = "http://github.com/kf8a/doi.js"
   s.authors  = ['Sven Bohm']
+  s.license  = "MIT"
   
   s.description = <<-EOF
-TODO: Long description 
+  Fetches citation data if given a doi
 EOF
   
   dependencies = [
     # Examples:
-    [:runtime,     "typheous"],
-    [:runtime,     "nokogiri"],
-    [:runtime,     "json"],
-    [:development, "rspec", "~> 2.1"],
-    [:development, "csv"],
+    [:runtime,     "typhoeus", "> 0.7"],
+    [:runtime,     "nokogiri", "> 1.6"],
+    [:runtime,     "json", "> 1.8"],
+    [:development, "rspec", "> 2.1"],
   ]
   
   s.files         = Dir['**/*']
