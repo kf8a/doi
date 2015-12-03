@@ -1,10 +1,10 @@
 
 # -*- encoding: utf-8 -*-
 $:.push('lib')
-require "doijs/version"
+require "doi/version"
 
 Gem::Specification.new do |s|
-  s.name     = "doijs"
+  s.name     = "doi"
   s.version  = Doijs::VERSION.dup
   s.date     = "2015-11-20"
   s.summary  = "A library to download doi information and pdfs"
@@ -19,10 +19,10 @@ EOF
   
   dependencies = [
     # Examples:
-    [:runtime,     "typhoeus", "> 0.7"],
-    [:runtime,     "nokogiri", "> 1.6"],
-    [:runtime,     "json", "> 1.8"],
-    [:development, "rspec", "> 2.1"],
+    [:runtime,     "typhoeus", "~> 0.7"],
+    [:runtime,     "nokogiri", "~> 1.6"],
+    [:runtime,     "json", "~> 1.8"],
+    [:development, "rspec", "~> 2.1"],
   ]
   
   s.files         = Dir['**/*']
