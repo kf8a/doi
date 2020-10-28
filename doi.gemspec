@@ -19,10 +19,10 @@ EOF
 
   dependencies = [
     # Examples:
-    [:runtime,     'typhoeus', '~> 0.7'],
+    [:runtime,     'typhoeus', '~> 1.4'],
     [:runtime,     'nokogiri', '~> 1.6'],
-    [:runtime,     'json', '~> 1.8'],
-    [:development, 'rspec', '~> 2.1'],
+    [:runtime,     'json', '~> 2.3'],
+    [:development, 'rspec', '~> 3.9'],
   ]
 
   s.files         = Dir['**/*']
